@@ -20,7 +20,7 @@
         justify-content: space-between;
       }
       .row {
-        background-color: rgb(107, 97, 183);
+        background-color: rgb(114, 105, 183);
         padding: 10px;
         display: flex;
         justify-content: space-around;
@@ -34,6 +34,11 @@
         border: 5px solid rgb(115, 75, 157);
         border-radius: 30px;
         background: linear-gradient(rgb(92, 93, 130), rgb(74, 93, 108),rgb(150, 156, 215));
+        transition-property: transform;
+        transition-duration: 0.5s;
+      }
+      .box:hover {
+        transform: scale(1.5, 1.5);
       }
 
       .container {
@@ -63,6 +68,30 @@
         opacity: 0.4;
         color: white;
       }
+      .row1 {
+        display: flex;
+        align-items: center;
+        background-color: rgb(142, 99, 223);
+        padding: 20px;
+      }
+
+      .row1 img {
+        width: 40%; 
+        border-radius: 10px;
+      }
+      .row1 h2 {
+          margin: 0; /* Removes extra margin */
+          text-align: left; /* Ensures the heading aligns to the left */
+        }
+      .row1 .text-container {
+        display: flex;
+        flex-direction: column; /* Arranges text in a vertical column */
+        margin-left: 20px; /* Adds space between image and text */
+      }
+      .row1 p {
+        font-style: italic;
+        margin-top: 10px; /* Adds space between the heading and the paragraph */
+      }
     </style>
   </head>
   <body>
@@ -73,7 +102,7 @@
       <div>
         <a href="#home" style="color: black;">Home</a>
         <a href="#projects" style="color: black;">Projects</a>
-        <a href="#" style="color: black;">About</a>
+        <a href="#about" style="color: black;">About</a>
         <a href="#" style="color: black;">Services</a>
         <a href="#" style="color: black;">Contact</a>
       </div>
@@ -101,6 +130,15 @@
         <a href="#" style="color: black;">View Project</a>
       </div>
     </div>
+    <div id="about">
+      <div class="row1">
+        <img src="assets/images/meeting.jpg" alt="Meeting Image"/>
+        <div class="text-container">
+          <h2>About</h2>
+          <p><i>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga magni aliquid dolore at et assumenda rerum illo delectus dolores ad? Voluptatibus rem ducimus amet. Exercitationem dolore culpa sint sed recusandae.</i></p>
+        </div>
+      </div>
+    </div>    
     <div>
       <h3>@Copyright 2024. All rights reserved.</h3>
     </div>
