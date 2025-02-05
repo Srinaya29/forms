@@ -10,9 +10,24 @@
             let name=document.getElementById("name").value
             let email=document.getElementById("email").value
             let password=document.getElementById("password").value
-            let dob1=document.getElementById("dob").value
+            let dob=document.getElementById("dob").value
             //data.innerHTML=name + " <br> " + email + " <br> " + password + " <br> " + dob1
-            data.innerHTML= `${name}<br>${email}<br>${password}<br>${dob1}<br>`
+           // data.innerHTML= `${name}<br>${email}<br>${password}<br>${dob1}<br>`
+           let user={
+            name: name,
+            email: email,
+            password: password,
+            dob:dob
+           }
+           users.push(user)
+           console.log(users)
+           //data.innerHTML=`${name},${email},${password},${dob},`
+           let length=users.length
+           let str="";
+           for(let i=0;i<length;i++){
+            str=str+`<li>${users[i].name}-${users[i].email}-${users[i].password}-${users[i].dob}</li>`;
+           }
+        data.innerHTML = str;
         }
     </script>
 </head>
