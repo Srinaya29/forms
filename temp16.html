@@ -9,9 +9,10 @@
             let str=`
             <div>
             <h2>Login Form</h2>
-            <p><input type="text"></p>
-            <p><input type="password"></p>
-            <button>Log In</button>
+            <div id="msg"></div>
+            <p><input type="email" id="email" placeholder="Enter Username"></p>
+            <p><input type="password" id="password" placeholder="Enter Password"></p>
+            <button onclick="homePage()">Log In</button>
             <p><button onclick="registration()">Create Account</button></p>
             </div>
             `
@@ -20,14 +21,49 @@
             function registration(){
                 let str=`
                 <h2>Registration Form</h2>
-                <p><input type="text" placeholder="First Name"></p>
-                <p><input type="text" placeholder="Last Name"></p>
-                <p><input type="email" placeholder="Email"></p>
-                <p><input type="password" placeholder="Password" required></p>
-                <p><button>Register</button></p>
+                <p><input type="text" id="name" placeholder="First Name"></p>
+                <p><input type="email" id="email" placeholder="Email"></p>
+                <p><input type="password" id="password" placeholder="Password" required></p>
+                <p><input type="date" id="dob"></p>
+                <p><button onclick='addUser()'>Register</button></p>
                 <p><button onclick="showData()">Back2Login</button></p>
                 `
                 root.innerHTML=str;
+            }
+            function homePage(){
+                let email=document.getElementById("email").value
+                let password=document.getElementById("password").value
+                for(let i=0;i<users.length;i++){
+                    if(users[i].email==email && users[i].password==password){
+                    home();
+                    break;    
+                    }else{
+                        msg.innerHTML="Access Denied"
+                    }
+                }
+                
+            }
+            let users=[];
+            function addUser(){
+                let name=document.getElementById("name").value
+                let email=document.getElementById("email").value
+                let password=document.getElementById("password").value
+                let dob=document.getElementById("dob").value
+                let user={
+                    name:name,
+                    email:email,
+                    password:password,
+                    dob:dob
+                }
+                users.push(user)
+                showData();
+            }
+            function home(){
+                let str=`
+                           <h2>WELCOME</h2>
+                          <button onclick="showData()">Log out</button>
+                `
+                          root.innerHTML=str
             }
     </script>
 </head>
