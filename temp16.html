@@ -2,73 +2,133 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDFC Bank</title>
     <script>
-        function showData(){
-            let str=`
-            <div>
-            <h2>Login Form</h2>
-            <div id="msg"></div>
-            <p><input type="email" id="email" placeholder="Enter Username"></p>
-            <p><input type="password" id="password" placeholder="Enter Password"></p>
-            <button onclick="homePage()">Log In</button>
-            <p><button onclick="registration()">Create Account</button></p>
-            </div>
-            `
-            root.innerHTML= str;
-        }
-            function registration(){
-                let str=`
-                <h2>Registration Form</h2>
-                <p><input type="text" id="name" placeholder="First Name"></p>
-                <p><input type="email" id="email" placeholder="Email"></p>
-                <p><input type="password" id="password" placeholder="Password" required></p>
-                <p><input type="date" id="dob"></p>
-                <p><button onclick='addUser()'>Register</button></p>
-                <p><button onclick="showData()">Back2Login</button></p>
-                `
-                root.innerHTML=str;
-            }
-            function homePage(){
-                let email=document.getElementById("email").value
-                let password=document.getElementById("password").value
-                for(let i=0;i<users.length;i++){
-                    if(users[i].email==email && users[i].password==password){
-                    home();
-                    break;    
-                    }else{
-                        msg.innerHTML="Access Denied"
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        let useremail = "";
+        let username = "";
+        let currBalance = 0;
+
+        function saveData() {
+            let amount = parseFloat(document.getElementById("amount").value);
+            let type = document.getElementById("type").value;
+            let msg = document.getElementById("msg");
+            let spBalance = document.getElementById("spBalance");
+
+            for (let i = 0; i < users.length; i++) {
+                if (users[i].email === useremail) {
+                    if (type == "1") {  // Deposit
+                        users[i].balance += amount;
+                    } else if (type == "2") {  // Withdraw
+                        if (users[i].balance < amount) {
+                            msg.innerHTML = "Insufficient Balance";
+                            return;
+                        } else {
+                            users[i].balance -= amount;
+                        }
                     }
+                    currBalance = users[i].balance;
+                    spBalance.innerHTML = currBalance;
+                    localStorage.setItem("users", JSON.stringify(users));
+                    return;
                 }
-                
             }
-            let users=[];
-            function addUser(){
-                let name=document.getElementById("name").value
-                let email=document.getElementById("email").value
-                let password=document.getElementById("password").value
-                let dob=document.getElementById("dob").value
-                let user={
-                    name:name,
-                    email:email,
-                    password:password,
-                    dob:dob
+        }
+
+        function home() {
+            let str = `
+                <h2>Welcome ${username}</h2>
+                <button onclick='showLogin()'>Logout</button>
+                <p><input type="number" id="amount" placeholder="Enter Amount"></p>
+                <p>
+                    <select id="type">
+                        <option value="0">--Select--</option>
+                        <option value="1">Deposit</option>
+                        <option value="2">Withdraw</option>
+                    </select>
+                </p>
+                <button onclick="saveData()">Submit</button>
+                <p>Current Balance: <span id="spBalance">${currBalance}</span></p>
+                <div id="msg" style="color: red;"></div>
+            `;
+            document.getElementById("root").innerHTML = str;
+        }
+
+        function addUser() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let dob = document.getElementById("dob").value;
+
+            if (!name || !email || !password || !dob) {
+                alert("All fields are required.");
+                return;
+            }
+
+            if (users.some(user => user.email === email)) {
+                alert("Email already exists!");
+                return;
+            }
+
+            let user = { name, email, password, dob, balance: 0 };
+            users.push(user);
+            localStorage.setItem("users", JSON.stringify(users));
+
+            alert("Registration successful! Please log in.");
+            showLogin();
+        }
+
+        function chkUser() {
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let msg = document.getElementById("msg");
+
+            for (let i = 0; i < users.length; i++) {
+                if (users[i].email === email && users[i].password === password) {
+                    useremail = email;
+                    username = users[i].name;
+                    currBalance = users[i].balance;
+                    home();
+                    return;
                 }
-                users.push(user)
-                showData();
             }
-            function home(){
-                let str=`
-                           <h2>WELCOME</h2>
-                          <button onclick="showData()">Log out</button>
-                `
-                          root.innerHTML=str
-            }
+            msg.innerHTML = "Access Denied";
+        }
+
+        function showForm() {
+            let str = `
+                <h2>Registration Form</h2>
+                <p><input type="text" id="name" placeholder="Name"></p>
+                <p><input type="text" id="email" placeholder="Email"></p>
+                <p><input type="password" id="password" placeholder="Password"></p>
+                <p><input type="date" id="dob"></p>
+                <p><button onclick='addUser()'>Submit</button></p>
+                <p>Already a member? <button onclick='showLogin()'>Login Here</button></p>
+            `;
+            document.getElementById("root").innerHTML = str;
+        }
+
+        function showLogin() {
+            let str = `
+                <div>
+                    <h2>Login Form</h2>
+                    <div id='msg' style="color: red;"></div>
+                    <p><input id="email" type="text" placeholder="Email"></p>
+                    <p><input id="password" type="password" placeholder="Password"></p>
+                    <button onclick='chkUser()'>Log In</button>
+                    <p><button onclick='showForm()'>Create Account</button></p>
+                </div>
+            `;
+            document.getElementById("root").innerHTML = str;
+        }
     </script>
 </head>
-<body onload="showData()">
+<body onload="showLogin()">
+    <h1>HDFC Bank</h1>
+    <hr>
     <div id="root"></div>
-    <!-- <button onclick="showData()">Click me</button> -->
+    <hr>
+    <h3>&copy; 2025. All rights reserved.</h3>
 </body>
 </html>
