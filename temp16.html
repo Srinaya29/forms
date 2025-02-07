@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function showData(){
+            let str=`
+            <div>
+            <h2>Login Form</h2>
+            <p><input type="text"></p>
+            <p><input type="password"></p>
+            <button>Log In</button>
+            <p><button onclick="registration()">Create Account</button></p>
+            </div>
+            `
+            root.innerHTML= str;
+        }
+            function registration(){
+                let str=`
+                <h2>Registration Form</h2>
+                <p><input type="text" placeholder="First Name"></p>
+                <p><input type="text" placeholder="Last Name"></p>
+                <p><input type="email" placeholder="Email"></p>
+                <p><input type="password" placeholder="Password" required></p>
+                <p><button>Register</button></p>
+                <p><button onclick="showData()">Back2Login</button></p>
+                `
+                root.innerHTML=str;
+            }
+    </script>
+</head>
+<body onload="showData()">
+    <div id="root"></div>
+    <!-- <button onclick="showData()">Click me</button> -->
+</body>
+</html>
