@@ -7,44 +7,116 @@
 </head>
 <style>
     body{
-       text-align: center;
+     background-color: rgb(252, 250, 250); 
     }
+    .container{
+        width: 400px;
+        background-color: white;
+        border-radius: 20px;
+        padding: 10px;
+        margin: auto;
+    }
+    .logo{
+        color: rgb(71, 94, 225);
+        font-size: 40px;
+        font-weight: bold;
+        font-family: Verdana;
+    }
+    .row{
+        display: flex;
+        justify-content: center;
+    }
+    .caption{
+        font-size: 15px;
+        color:gray;
+        text-align: center;
+    }
+    .title{
+        font-size: 20px;
+        margin-top: 30px;
+    }
+    input,select{
+        width: 100%;
+        border-radius: 10px;
+        margin: 5px;
+        padding: 5px;
+        border:1px solid gray;
+    }
+    button{
+        color: white;
+        font-size: 20px;
+        background-color: green;
+        padding: 10px;
+    }
+    .leftCaption{
+        color: black;
+        margin-left: 5px;
+        font-size: 15px;
+        justify-content: space-between;
+    }
+    .radioClass{
+        border: 1px solid gray;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        border-radius: 5px;
+        margin: 5px;
+        padding: 3px;
+
+    }.qMark {
+        background-color: gray;
+        border-radius: 5px;
+        color: white;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin: 2px;
+      }
 </style>
 <body>
-    <h1>facebook</h1>
-    <h2>Create a new account</h2>
-    <h6>it's quick and easy</h6>
-    <hr>
-    <input type="text" placeholder="First name" required>
-    <input type="text" placeholder="Last name" required>
-    <p><label for="dob">Date of Birth:</label></p>
-    <select id="day" name="day">
-        <option>Day</option>
-        <!-- Days 1 to 31 -->
-        <script>for(let i=1; i<=31; i++) document.write(`<option>${i}</option>`);</script>
-    </select>
+    <div class="container">
+    <div class="row">
+        <h1 class="logo">facebook</h1>
+    </div>
+    <div class="row">
+        <div>
+        <div class="title">Create a new account</div>
+        <div class="caption">It's quick and easy</div>
+    </div>
+    </div>
+    <div class="row">
+        <input type="text" placeholder="First name" required>
+        <input type="text" placeholder="Last name" required>
+    </div>
+    <div class="row" style="justify-content: left;">
+        <div class="leftCaption">Date of Birth<span class="qMark"
+            ><abbr title="Click for more information">?</abbr></span
+          ></div>
+    </div>
+    <div class="row">
+        <select id="day"></select>
+        <select id="month">Month</select>
+        <select id="year"></select>
+    </div>
+    <div class="row" style="justify-content: left;">
+        <div class="leftCaption">Gender<span class="qMark"
+            ><abbr title="Click for more information">?</abbr></span
+          ></div>
+    </div>
+    <div class="row">
+        <div class="radioClass">
+        <div><label>Female</label></div>
+        <div><input type="radio" name="gender" value="female"></div>
+        </div>
+        <div class="radioClass">
+        <div><label>Male</label></div>
+        <div><input type="radio" name="gender" value="male"></div>
+        </div>
+        <div class="radioClass">
+        <div><label>Other</label></div>
+        <div><input type="radio" name="gender" value="other"></div>
+        </div>
+    </div>
 
-    <select id="month" name="month">
-        <option>Month</option>
-        <option value="1">Jan</option>
-        <option value="2">Feb</option>
-        <option value="3">Mar</option>
-        <option value="4">Apr</option>
-        <option value="5">May</option>
-        <option value="6">Jun</option>
-        <option value="7">Jul</option>
-        <option value="8">Aug</option>
-        <option value="9">Sep</option>
-        <option value="10">Oct</option>
-        <option value="11">Nov</option>
-        <option value="12">Dec</option>
-    </select>
-
-    <select id="year" name="year">
-        <option>Year</option>
-        <!-- Years from 1980 to 2025 -->
-        <script>for(let i=2025; i>=1980; i--) document.write(`<option>${i}</option>`);</script>
-    </select>
-
+</div>
 </body>
 </html>
