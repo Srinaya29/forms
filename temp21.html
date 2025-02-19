@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+       text-align: center;
+    }
+</style>
+<body>
+    <h1>facebook</h1>
+    <h2>Create a new account</h2>
+    <h6>it's quick and easy</h6>
+    <hr>
+    <input type="text" placeholder="First name" required>
+    <input type="text" placeholder="Last name" required>
+    <p><label for="dob">Date of Birth:</label></p>
+    <select id="day" name="day">
+        <option>Day</option>
+        <!-- Days 1 to 31 -->
+        <script>for(let i=1; i<=31; i++) document.write(`<option>${i}</option>`);</script>
+    </select>
+
+    <select id="month" name="month">
+        <option>Month</option>
+        <option value="1">Jan</option>
+        <option value="2">Feb</option>
+        <option value="3">Mar</option>
+        <option value="4">Apr</option>
+        <option value="5">May</option>
+        <option value="6">Jun</option>
+        <option value="7">Jul</option>
+        <option value="8">Aug</option>
+        <option value="9">Sep</option>
+        <option value="10">Oct</option>
+        <option value="11">Nov</option>
+        <option value="12">Dec</option>
+    </select>
+
+    <select id="year" name="year">
+        <option>Year</option>
+        <!-- Years from 1980 to 2025 -->
+        <script>for(let i=2025; i>=1980; i--) document.write(`<option>${i}</option>`);</script>
+    </select>
+
+</body>
+</html>
