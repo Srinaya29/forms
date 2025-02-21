@@ -131,6 +131,8 @@
       let yy;
       let pronoun;
       let g = "";
+      let interests = [];
+      let g1 = [];
         const showData = () => {
         firstname = document.getElementById("firstname").value;
         surname = document.getElementById("surname").value;
@@ -141,18 +143,29 @@
         dd = Number(document.getElementById("day").value);
         mm = Number(document.getElementById("month").value);
         yy = Number(document.getElementById("year").value);
+        interests = document.getElementsByName("interests");
         console.log(dd, mm, yy);
         let dob = `${dd}-${months[mm]}-${yy}`;
         g = "";
         if (gender[0].checked) g = "Female";
         if (gender[1].checked) g = "Male";
         if (gender[2].checked) g = pronoun;
+        
+        g1 = []; // Reset selected interests
+
+            interests.forEach(interest => {
+                if (interest.checked) { 
+                    g1.push(interest.value); 
+                }
+        });
+
         let str = `
           <h3>Verify your information</h3>
           <p>Name:${firstname} ${surname}</p>
           <p>Email:${email}</p>
           <p>Password:${password}</p>
           <p>Gender:${g}</p>
+          <p>Interests: ${g1.join(", ")}</p>
           <p>Date of Birth:${dob}</p>
           <button>Confirm</button>
           <button onclick=showForm()>Edit</button>
@@ -244,16 +257,22 @@
 
         <div class="row ">
         <div class="radioClass">
-            <label>Sports</label>
-            <input type="checkbox" id="sports" name="interests" value="Sports">
+        <div><label> Sports</label></div>
+        <div><input type="checkbox" ${
+            g1 === "sports" && "checked"
+          } name="interests" value="sports"/></div>
         </div>
         <div class="radioClass">
-            <label>Music</label>
-            <input type="checkbox" id="music" name="interests" value="Music">
+        <div><label>Music</label></div>
+        <div><input type="checkbox" ${
+            g1 === "music" && "checked"
+          } name="interests" value="music"/></div>
         </div>
         <div class="radioClass">
-            <label>Travel</label>
-            <input type="checkbox" id="travel" name="interests" value="Travel">
+             <div><label>Travel</label></div>
+        <div><input type="checkbox" ${
+            g1 === "travel" && "checked"
+          } name="interests" value="travel"/></div>
         </div>
         </div>
 
@@ -307,6 +326,7 @@
           prSelect.style.display = "none";
         }
       };
+
     </script>
   </body>
 </html>
