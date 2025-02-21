@@ -151,7 +151,7 @@
         if (gender[1].checked) g = "Male";
         if (gender[2].checked) g = pronoun;
         
-        g1 = []; // Reset selected interests
+        g1 = []; 
 
             interests.forEach(interest => {
                 if (interest.checked) { 
@@ -258,21 +258,15 @@
         <div class="row ">
         <div class="radioClass">
         <div><label> Sports</label></div>
-        <div><input type="checkbox" ${
-            g1 === "sports" && "checked"
-          } name="interests" value="sports"/></div>
+        <div><input type="checkbox" ${g1.includes("sports") ? "checked" : ""} name="interests" value="sports"/></div>
         </div>
         <div class="radioClass">
         <div><label>Music</label></div>
-        <div><input type="checkbox" ${
-            g1 === "music" && "checked"
-          } name="interests" value="music"/></div>
+        <div><input type="checkbox" ${g1.includes("music") ? "checked" : ""} name="interests" value="music"/></div>
         </div>
         <div class="radioClass">
              <div><label>Travel</label></div>
-        <div><input type="checkbox" ${
-            g1 === "travel" && "checked"
-          } name="interests" value="travel"/></div>
+        <div><input type="checkbox"  ${g1.includes("travel") ? "checked" : ""} name="interests" value="travel"/></div>
         </div>
         </div>
 
