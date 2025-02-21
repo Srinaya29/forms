@@ -74,16 +74,23 @@
         margin: 2px;
       }
       .interests-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 80px; /* Adds space between checkboxes */
-    }
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adds space between items */
+    justify-content: space-between;
+}
 
-    .interest-item {
-        display: flex;
-        align-items: center;
-        gap: 10px; /* Space between checkbox and label */
-    }
+.interest-item {
+    border: 1px solid gray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 48%; /* Ensures two items per row */
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
 </style>
 <body>
     <div class="container">
@@ -234,22 +241,24 @@
           >
         </div>
       </div>
-       
-        <div class="row interests-container">
-            <div class="interest-item">
-                <input type="checkbox" id="sports" name="interests" value="Sports">
-                <label for="sports">Sports</label>
-            </div>
-            <div class="interest-item">
-                <input type="checkbox" id="music" name="interests" value="Music">
-                <label for="music">Music</label>
-            </div>
-            <div class="interest-item">
-                <input type="checkbox" id="travel" name="interests" value="Travel">
-                <label for="travel">Travel</label>
-            </div>
+
+        <div class="row ">
+        <div class="radioClass">
+            <label>Sports</label>
+            <input type="checkbox" id="sports" name="interests" value="Sports">
+        </div>
+        <div class="radioClass">
+            <label>Music</label>
+            <input type="checkbox" id="music" name="interests" value="Music">
+        </div>
+        <div class="radioClass">
+            <label>Travel</label>
+            <input type="checkbox" id="travel" name="interests" value="Travel">
+        </div>
         </div>
 
+       
+       
         
 
      <div class="row">
